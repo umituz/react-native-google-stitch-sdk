@@ -13,6 +13,5 @@
  * - /init: Initialization utilities
  */
 
-// Re-export everything for backward compatibility
 export * from './domains/core';
 export * from './init';

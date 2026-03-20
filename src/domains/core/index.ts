@@ -7,8 +7,16 @@
 // Domain entities
 export type {
   StitchProject,
-  StitchProjectCreateInput,
-  StitchProjectUpdateInput,
+  StitchScreen,
+  DeviceType,
+  ModelId,
+  CreativeRange,
+  VariantAspect,
+  VariantOptions,
+  ScreenGenerateInput,
+  ScreenEditInput,
+  ScreenVariantsInput,
+  ScreenOutput,
 } from '../../domain/entities';
 
 // Infrastructure services
@@ -20,4 +28,4 @@ export { useStitch } from '../../presentation/hooks';
 export type { UseStitchConfig, UseStitchReturn } from '../../presentation/hooks';
 
 // Constants
-export { STITCH_DEFAULT_CONFIG, STITCH_ERROR_MESSAGES } from '../../infrastructure/constants';
+export { STITCH_ERROR_MESSAGES } from '../../infrastructure/constants';

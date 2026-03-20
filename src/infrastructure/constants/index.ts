@@ -3,4 +3,4 @@
  * @description Configuration constants
  */
 
-export { STITCH_DEFAULT_CONFIG, STITCH_ERROR_MESSAGES } from './stitch.constants';
+export { STITCH_ERROR_MESSAGES } from './stitch.constants';

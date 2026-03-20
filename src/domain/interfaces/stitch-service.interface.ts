@@ -3,31 +3,73 @@
  * @description Contract for Stitch SDK service implementations
  */
 
-import type { StitchProject, StitchProjectCreateInput, StitchProjectUpdateInput } from '../entities';
+import type {
+  StitchProject,
+  StitchScreen,
+  ScreenGenerateInput,
+  ScreenEditInput,
+  ScreenVariantsInput,
+  ScreenOutput,
+} from '../entities';
 
 export interface IStitchService {
   /**
-   * Read a project by ID
-   */
-  readProject(_projectId: string): Promise<StitchProject>;
-
-  /**
-   * Write/create a new project
-   */
-  writeProject(_input: StitchProjectCreateInput): Promise<StitchProject>;
-
-  /**
-   * Update an existing project
-   */
-  updateProject(_projectId: string, _input: StitchProjectUpdateInput): Promise<StitchProject>;
-
-  /**
-   * Delete a project
-   */
-  deleteProject(_projectId: string): Promise<void>;
-
-  /**
-   * List all projects
+   * List all accessible projects
    */
   listProjects(): Promise<StitchProject[]>;
+
+  /**
+   * Get a project reference by ID (no API call)
+   */
+  getProject(projectId: string): StitchProject;
+
+  /**
+   * List all screens in a project
+   */
+  listScreens(projectId: string): Promise<StitchScreen[]>;
+
+  /**
+   * Get a specific screen by ID
+   */
+  getScreen(projectId: string, screenId: string): Promise<StitchScreen>;
+
+  /**
+   * Generate a screen from a text prompt
+   */
+  generateScreen(projectId: string, input: ScreenGenerateInput): Promise<StitchScreen>;
+
+  /**
+   * Edit a screen with a text prompt
+   */
+  editScreen(projectId: string, screenId: string, input: ScreenEditInput): Promise<StitchScreen>;
+
+  /**
+   * Generate design variants of a screen
+   */
+  generateVariants(projectId: string, screenId: string, input: ScreenVariantsInput): Promise<StitchScreen[]>;
+
+  /**
+   * Get the screen's HTML download URL
+   */
+  getScreenHtml(projectId: string, screenId: string): Promise<string>;
+
+  /**
+   * Get the screen's screenshot download URL
+   */
+  getScreenImage(projectId: string, screenId: string): Promise<string>;
+
+  /**
+   * Get both HTML and image URLs for a screen
+   */
+  getScreenOutput(projectId: string, screenId: string): Promise<ScreenOutput>;
+
+  /**
+   * Create a new project using MCP tool
+   */
+  createProject(title: string): Promise<{ projectId: string }>;
+
+  /**
+   * Call MCP tool directly
+   */
+  callTool<T = unknown>(name: string, args: Record<string, unknown>): Promise<T>;
 }
